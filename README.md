@@ -201,3 +201,255 @@ src/
 Day 2 successfully delivered a **production-style input form** with good UX, validation, and persistence.
 
 This is the core input layer of the AI Spend Audit system.
+
+
+# AI Spend Audit - Day 3
+
+## Overview
+
+Day 3 focused on building the core Audit Engine for the AI Spend Audit application.
+
+This is the main business logic layer of the project. The application now analyzes user-entered AI tool subscriptions and generates cost-saving recommendations using rule-based logic.
+
+The entire audit flow is currently handled on the frontend using React and JavaScript without backend integration.
+
+
+# Day 3 Goals Achieved
+
+- Built rule-based audit engine
+- Created pricing data configuration
+- Added savings calculation logic
+- Generated recommendations dynamically
+- Built audit results page
+- Added React Router navigation
+- Connected form → audit engine → results flow
+- Improved UI and UX
+
+
+# Application Flow
+
+```text
+User Form
+   ↓
+auditEngine.js
+   ↓
+Recommendation Logic
+   ↓
+Savings Calculation
+   ↓
+Results Page
+```
+
+
+
+# Features Implemented
+
+## 1. Rule-Based Audit Engine
+
+Created:
+
+text
+src/utils/auditEngine.js
+
+The audit engine:
+- analyzes current AI tool usage
+- applies business rules
+- generates recommendations
+- calculates savings
+
+Examples:
+- ChatGPT Team for 2 users → recommend Plus plan
+- Cursor Business for small teams → recommend Pro
+- GitHub Copilot Business for small teams → recommend Individual
+
+
+
+## 2. Pricing Configuration
+
+Created:
+text
+src/data/pricing.js
+
+
+Contains centralized pricing data for:
+- ChatGPT
+- Claude
+- Cursor
+- Gemini
+- GitHub Copilot
+
+This improves maintainability and scalability.
+
+
+## 3. Savings Calculation
+
+The audit engine calculates:
+- Monthly savings
+- Annual savings
+- Optimization opportunities
+
+Example:
+
+text
+Monthly Savings: $20
+Annual Savings: $240
+
+
+## 4. Recommendation System
+
+Generated recommendations based on:
+- team size
+- seats
+- monthly spending
+- selected plan
+- tool usage
+
+Example recommendation:
+
+text
+Switch to ChatGPT Plus
+
+
+## 5. Results Page
+
+Created:
+text
+src/pages/Results.jsx
+
+
+Displays:
+- current tool
+- current plan
+- recommendation
+- savings
+- reasoning
+- risk level
+
+
+## 6. React Router Navigation
+
+Added navigation flow:
+
+text
+AuditForm → Results Page
+
+
+Used:
+- useNavigate()
+- useLocation()
+
+---
+
+## 7. LocalStorage Persistence
+
+Form data continues to persist after refresh using:
+- localStorage
+
+This improves user experience.
+
+
+
+# Tech Stack Used
+
+## Frontend
+- React.js (Vite)
+- React Router DOM
+- Tailwind CSS
+- JavaScript (ES6)
+
+
+
+# Folder Structure (Day 3)
+
+text
+src/
+│
+├── pages/
+│   ├── AuditForm.jsx
+│   └── Results.jsx
+│
+├── utils/
+│   └── auditEngine.js
+│
+├── data/
+│   └── pricing.js
+│
+├── router/
+│   └── AppRouter.jsx
+│
+└── App.jsx
+
+# Business Logic Examples
+
+## ChatGPT Rule
+
+text
+If Team plan is used for <= 2 users,
+recommend Plus plan.
+
+
+## Cursor Rule
+
+text
+If Business plan is used for a small team,
+recommend Cursor Pro.
+
+
+## GitHub Copilot Rule
+
+text
+If Business plan is used for <= 3 users,
+recommend Individual plan.
+
+# Key Learning
+
+- Building rule-based recommendation systems
+- React Router navigation
+- Passing state between pages
+- Business logic implementation
+- Cost optimization calculations
+- Dynamic UI rendering
+- Frontend architecture planning
+
+
+# Current Status
+
+## Completed
+- Dynamic form UI
+- Audit engine
+- Recommendation logic
+- Savings calculations
+- Results page
+- Router navigation
+
+## Pending
+- Backend integration
+- Database storage
+- API endpoints
+- Authentication
+- PDF export
+- Charts/dashboard
+
+
+
+# Next Steps (Day 4)
+
+- Connect Spring Boot backend
+- Create `/api/audit` endpoint
+- Store audit reports in database
+- Add charts and analytics
+- Generate downloadable PDF reports
+- Add authentication system
+
+
+# Summary
+
+Day 3 successfully delivered the core functionality of the AI Spend Audit system.
+
+The application can now:
+- analyze AI subscription spending
+- generate optimization recommendations
+- calculate savings opportunities
+- display detailed audit reports
+
+This transforms the project from a simple form application into a functional SaaS-style audit platform.
