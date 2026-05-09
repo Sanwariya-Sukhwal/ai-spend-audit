@@ -40,6 +40,8 @@ export default function Results() {
 
         <div className="grid md:grid-cols-2 gap-6">
 
+          {/* CURRENT TOOL */}
+
           <div className="bg-white/10 p-6 rounded-2xl border border-white/10">
 
             <h3 className="text-gray-400 mb-2">
@@ -55,6 +57,8 @@ export default function Results() {
             </p>
 
           </div>
+
+          {/* CURRENT PLAN */}
 
           <div className="bg-white/10 p-6 rounded-2xl border border-white/10">
 
@@ -72,6 +76,44 @@ export default function Results() {
 
           </div>
 
+          {/* CURRENT SPEND */}
+
+          <div className="bg-yellow-500/20 p-6 rounded-2xl border border-yellow-500">
+
+            <h3 className="text-yellow-300 mb-2">
+
+              Current Spend
+
+            </h3>
+
+            <p className="text-3xl font-bold">
+
+              ${result.currentSpend}
+
+            </p>
+
+          </div>
+
+          {/* OPTIMIZED SPEND */}
+
+          <div className="bg-cyan-500/20 p-6 rounded-2xl border border-cyan-500">
+
+            <h3 className="text-cyan-300 mb-2">
+
+              Optimized Spend
+
+            </h3>
+
+            <p className="text-3xl font-bold">
+
+              ${result.optimizedSpend}
+
+            </p>
+
+          </div>
+
+          {/* RECOMMENDATION */}
+
           <div className="bg-green-500/20 p-6 rounded-2xl border border-green-500">
 
             <h3 className="text-green-300 mb-2">
@@ -88,6 +130,8 @@ export default function Results() {
 
           </div>
 
+          {/* MONTHLY SAVINGS */}
+
           <div className="bg-blue-500/20 p-6 rounded-2xl border border-blue-500">
 
             <h3 className="text-blue-300 mb-2">
@@ -98,10 +142,13 @@ export default function Results() {
 
             <p className="text-3xl font-bold">
 
-              ${result.savings}
+              ${result.monthlySavings}
+
             </p>
 
           </div>
+
+          {/* ANNUAL SAVINGS */}
 
           <div className="bg-purple-500/20 p-6 rounded-2xl border border-purple-500">
 
@@ -114,9 +161,12 @@ export default function Results() {
             <p className="text-3xl font-bold">
 
               ${result.annualSavings}
+
             </p>
 
           </div>
+
+                  {/* RISK LEVEL */}
 
           <div className="bg-red-500/20 p-6 rounded-2xl border border-red-500">
 
@@ -129,11 +179,14 @@ export default function Results() {
             <p className="text-3xl font-bold">
 
               {result.riskLevel}
+
             </p>
 
           </div>
 
         </div>
+
+
 
         {/* REASON */}
 
@@ -152,6 +205,8 @@ export default function Results() {
           </p>
 
         </div>
+
+
 
       </div>
 

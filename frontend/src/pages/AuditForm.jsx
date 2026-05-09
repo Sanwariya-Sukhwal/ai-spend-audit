@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { runAudit } from "../utils/auditEngine";
+import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 export default function AuditForm() {
@@ -32,25 +32,30 @@ export default function AuditForm() {
   const handleChange = (e) => {
 
     let updated = {
+
       ...form,
+
       [e.target.name]: e.target.value,
     };
 
     // Reset plan when tool changes
     if (e.target.name === "tool") {
+
       updated.plan = "";
     }
 
     setForm(updated);
 
     localStorage.setItem(
+
       "audit-form",
+
       JSON.stringify(updated)
     );
   };
 
   // Submit handler
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
 
     // Validation
     if (!form.tool || !form.plan) {
@@ -60,30 +65,45 @@ export default function AuditForm() {
       return;
     }
 
-    // Run Audit Engine
-    const result = runAudit({
+    try {
 
-      ...form,
+      const response = await api.post(
 
-      monthlySpend: Number(form.monthlySpend),
+        "/audit",
 
-      seats: Number(form.seats),
+        {
 
-      teamSize: Number(form.teamSize),
-    });
+          ...form,
 
-    console.log("Audit Result:", result);
+          monthlySpend: Number(form.monthlySpend),
 
-    // Navigate to Results Page
-    navigate("/results", {
+          seats: Number(form.seats),
 
-      state: {
+          teamSize: Number(form.teamSize),
+        }
+      );
 
-        form,
+      console.log(response.data);
 
-        result
-      }
-    });
+      // Navigate to Results Page
+      navigate("/results", {
+
+        state: {
+
+          form,
+
+          result: response.data
+        }
+      });
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+      alert("Backend connection failed");
+    }
   };
 
   return (
@@ -131,7 +151,7 @@ export default function AuditForm() {
             Cursor
           </option>
 
-          <option value="GitHub Copilot">
+          <option value="Copilot">
             GitHub Copilot
           </option>
 
@@ -228,7 +248,7 @@ export default function AuditForm() {
 
           {/* COPILOT */}
 
-          {form.tool === "GitHub Copilot" && (
+          {form.tool === "Copilot" && (
             <>
               <option value="Individual">
                 Individual

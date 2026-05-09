@@ -453,3 +453,251 @@ The application can now:
 - display detailed audit reports
 
 This transforms the project from a simple form application into a functional SaaS-style audit platform.
+
+
+
+# AI Spend Audit - Day 4
+
+## Overview
+
+Day 4 focused on transforming the AI Spend Audit application from a frontend-only project into a complete full-stack system.
+
+The frontend is now connected to a Spring Boot backend API, and audit results are processed server-side using rule-based business logic. Audit records are also stored in PostgreSQL for persistence and future analytics.
+
+
+
+## Day 4 Goals Achieved
+
+- Built Spring Boot Audit API
+- Created DTO-based backend architecture
+- Implemented backend audit engine logic
+- Connected React frontend with backend APIs
+- Added Axios API integration
+- Connected PostgreSQL database (Supabase)
+- Saved audit results into database
+- Added CORS configuration
+- Improved results dashboard
+- Added risk-level analysis
+
+---
+
+## New Full-Stack Architecture
+
+```text
+React Form
+    ↓
+Axios API Request
+    ↓
+Spring Boot Controller
+    ↓
+Audit Service Logic
+    ↓
+PostgreSQL Database
+    ↓
+Audit Response
+    ↓
+Results Dashboard
+
+
+---
+
+## Backend Features Implemented
+
+### 1. REST API
+
+Created endpoint:
+text
+POST /api/audit
+
+
+Used to:
+- Receive audit form data
+- Run audit calculations
+- Return optimization recommendations
+
+---
+
+### 2. DTO Layer
+
+Created:
+- AuditRequest.java
+- AuditResponse.java
+
+Purpose:
+- Clean API request/response handling
+- Better separation of concerns
+
+---
+
+### 3. Audit Engine Logic
+
+Implemented rule-based recommendation system for:
+
+- ChatGPT
+- Claude
+- Cursor
+- GitHub Copilot
+
+Features:
+- Monthly savings calculation
+- Annual savings calculation
+- Current vs optimized spend
+- Risk-level analysis
+
+---
+
+### 4. Database Integration
+
+Connected PostgreSQL using Supabase.
+
+Audit records are now persisted in database.
+
+Stored fields:
+- tool
+- plan
+- monthlySpend
+- monthlySavings
+- annualSavings
+- createdAt
+
+---
+
+### 5. Risk Level System
+
+Added business-risk analysis:
+
+| Scenario | Risk Level |
+|----------|------------|
+| Optimized setup | Safe |
+| Minor overspending | Low |
+| Wrong plan selection | Medium |
+| Expensive misuse | High |
+
+---
+
+## Frontend Improvements
+
+### Results Dashboard
+
+Added:
+- Current Spend
+- Optimized Spend
+- Monthly Savings
+- Annual Savings
+- Recommendation
+- Risk Level
+- Recommendation Reason
+
+---
+
+### API Integration
+
+Replaced frontend-only audit logic with backend API calls using Axios.
+
+Example:
+
+javascript
+const response = await api.post(
+  "/audit",
+  form
+);
+
+
+---
+
+## Tech Stack Used
+
+### Frontend
+- React (Vite)
+- Tailwind CSS
+- Axios
+- React Router DOM
+
+### Backend
+- Spring Boot
+- Spring Data JPA
+- Lombok
+- REST APIs
+
+### Database
+- PostgreSQL (Supabase)
+
+---
+
+## Folder Structure (Day 4)
+
+### Backend
+
+```text
+backend/
+├── controller/
+├── service/
+├── repository/
+├── entity/
+├── dto/
+└── config/
+```
+
+### Frontend
+
+text
+frontend/src/
+├── pages/
+├── services/
+├── components/
+└── router/
+
+
+---
+
+## Challenges Faced
+
+### CORS Issues
+
+Frontend requests were initially blocked by Spring Boot security policies.
+
+### Solution
+
+- Added custom WebConfig.java
+- Enabled CORS mapping for frontend origin
+
+---
+
+## Key Learning
+
+- Connecting React frontend with Spring Boot backend
+- Designing DTO-based APIs
+- Writing backend business logic
+- Persisting audit data using JPA
+- Handling CORS configuration
+- Structuring scalable full-stack applications
+
+---
+
+## Current Project Status
+
+The AI Spend Audit application is now a fully functional full-stack SaaS-style platform capable of:
+
+- Receiving audit requests
+- Running optimization logic
+- Calculating savings
+- Returning recommendations
+- Persisting data in PostgreSQL
+
+---
+
+## Next Steps (Day 5)
+
+- Add AI-generated summaries
+- Build lead capture system
+- Implement email integration
+- Add audit history page
+- Add charts and analytics dashboard
+
+---
+
+## Summary
+
+Day 4 successfully transformed the project into a production-style full-stack application.
+
+The audit engine now runs securely on the backend, results are persisted in PostgreSQL, and the application architecture is scalable for future SaaS features.
